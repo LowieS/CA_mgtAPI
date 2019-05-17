@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+
+
+.title{
+    width: 100%;
+    height: 20%;
+    margin-left: 40%;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+.container {
+  position: absolute;
+  margin-top: 10%;
+  margin-left: 330%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100px;
+  
+}
+.drop{
+    margin-left: 50%;
+    margin-top: 15%;
+    display: flex;
+    
+    
+}
+.adv{
+ 
+  display: flex;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+.adv *{
+  margin-left: 2%;
+  
+}
+select{
+  height: 20px;
+  
+}
+.ava{
+  height: 30px;
+  width: auto;
+}
+.box{
+  display: flex;
+  margin-left: 10%;
+}
+.output{
+    margin-top: 15%;
+    margin-left: 50%;
+    z-index: -1;
+    width: 100%;
+}
+.table{
+    width: 1500px;
+    
+}
+  .search {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: #EF8924;
+    border-radius: 50%;
+    transition: all 1s;
+    z-index: 4;
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+  }
+   
+  .search:hover {
+      cursor: pointer;
+    }
+    .search::before {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: 22px;
+      right: 0;
+      bottom: 0;
+      left: 22px;
+      width: 12px;
+      height: 2px;
+      background: white;
+      transform: rotate(45deg);
+      transition: all .5s;
+    }
+    .search::after {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: -5px;
+      right: 0;
+      bottom: 0;
+      left: -5px;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 2px solid white;
+      transition: all .5s;
+    }
+  
+  input {
+    font-family: 'Inconsolata', monospace;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    
+    background: #EF8924;
+    color: white;
+    text-shadow: 0 0 10px #EF8924;
+    padding: 0 80px 0 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 25px 0 #EF8924,
+                0 20px 25px 0 rgba(0, 0, 0, 0.2);
+  
+    transition: all 1s;
+    opacity: 0;
+    z-index: 5;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+  }
+    input:hover {
+      cursor: pointer;
+    }
+    input:focus {
+      width: 300px;
+      opacity: 1;
+      cursor: text;
+    }
+    input:focus ~ .search {
+      right: -250px;
+      background: #151515;
+      z-index: 6;
+    }
+      input::before {
+        top: 0;
+        left: 0;
+        width: 25px;
+      }
+      input::after {
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 2px;
+        border: none;
+        background: white;
+        border-radius: 0%;
+        transform: rotate(-45deg);
+      }
+    
+    input::placeholder {
+      color: white;
+      opacity: 0.5;
+      font-weight: bolder;
+    }
+
+
+
+
+    
+
+    
+  
+

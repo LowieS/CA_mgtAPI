@@ -1,0 +1,22 @@
+<div class="title"><img src="https://fizen.files.wordpress.com/2014/05/mtglogo.jpg" alt=""></div>
+
+<body>
+  <table class='table'>
+    <thead>
+      <tr>
+       
+        <th>name</th>
+        <th>amount</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Card of RestAPI.CardOrderList">
+        <td>  {{ Card.name }}</td>
+        <td>{{ Card.amount}}</td>
+        
+      </tr>
+    </tbody>
+  </table>
+  
+</body>

@@ -1,0 +1,11 @@
+<div class="title"><img src="https://fizen.files.wordpress.com/2014/05/mtglogo.jpg" alt=""></div>
+
+<body>
+  
+  <div *ngIf="!RestAPI.Login" class="login"><p>Username:</p>
+    <div class="username"><input type="text" [(ngModel)]="Username"> <p-button class="loginbutton" label="login" styleClass="ui-button-warning ui-button-rounded" (click)="Login()"></p-button> </div> 
+  </div>
+  <div *ngIf="RestAPI.Login"><h1>Hey</h1>
+    <p-button  label="logout" styleClass="ui-button-warning ui-button-rounded" (click)="Login()"></p-button> 
+  </div>
+</body>

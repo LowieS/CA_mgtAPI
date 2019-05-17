@@ -1,0 +1,20 @@
+.main{
+    margin-left: 40%;
+    width: 1500px;
+}
+
+.info{
+    display: flex;
+    margin-top: 5%;
+}
+.infoText{
+    margin-left: 2%;
+}
+ .ui-accordion {
+     background-color: aqua;
+    
+}
+.ui-accordion-header{
+    background-color: gold;
+}	
+

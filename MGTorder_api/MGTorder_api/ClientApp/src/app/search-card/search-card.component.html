@@ -1,0 +1,60 @@
+<div class="title"><img src="https://fizen.files.wordpress.com/2014/05/mtglogo.jpg" alt=""></div>
+
+<div class="container">
+    <input type="text" placeholder="Search..."[(ngModel)]="RestAPI.searchName" (keyup)="setValue()" >
+    <div class="search"></div>
+    </div>
+    <div class="drop" >
+        <p-button label="Advanced" styleClass="ui-button-warning " (click)="AdvancedTrue()"  ></p-button>
+      <div class="sel">
+        <div class="adv">
+            <select [(ngModel)]="RestAPI.searchSet" *ngIf="RestAPI.Advanced" (change)="setValue()" >
+                <option value="" disabled selected>Select your set</option>
+                <ng-container *ngFor="let Set of RestAPI.SetList.data">
+              <option   *ngIf="Set.tcgplayer_id<76 &&(Set.set_type=='expansion'||Set.set_type=='core')"  [value]="Set.code">{{Set.name}}</option>
+            </ng-container>
+              
+            </select>
+            <p class="box">
+                <p-checkbox name="Black" value="B" [(ngModel)]="RestAPI.selectedColors" *ngIf="RestAPI.Advanced" label="Black" (click)="setValue()"></p-checkbox>
+                <p-checkbox name="White" value="W" [(ngModel)]="RestAPI.selectedColors" *ngIf="RestAPI.Advanced" label="White"(click)="setValue()"></p-checkbox>
+                <p-checkbox name="Green" value="G" [(ngModel)]="RestAPI.selectedColors" *ngIf="RestAPI.Advanced"label="Green"(click)="setValue()"></p-checkbox>
+                <p-checkbox name="Red" value="R" [(ngModel)]="RestAPI.selectedColors" *ngIf="RestAPI.Advanced"label="Red" (click)="setValue()"></p-checkbox>
+                <p-checkbox name="Blue" value="U" [(ngModel)]="RestAPI.selectedColors" *ngIf="RestAPI.Advanced"label="Blue" (click)="setValue()"></p-checkbox>
+                <p-checkbox name="Colorless" value="C" [(ngModel)]="RestAPI.selectedColors" *ngIf="RestAPI.Advanced"label="colorless" (click)="setValue()"></p-checkbox>
+            
+            </p>
+          </div>
+      </div>
+    
+    
+  </div>
+  
+
+<div class="output">
+<p *ngIf="!RestAPI.CardList"><em>Loading...</em></p>
+
+<table class='table' *ngIf="RestAPI.CardList">
+  <thead>
+    <tr>
+     
+      <th>name</th>
+      <th>ManaCost</th>
+      <th>CMC</th>
+      <th>Colors</th>
+      <th>Available</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let Card of RestAPI.CardList.data">
+      <td> <p-button label="view" styleClass="ui-button-warning ui-button-rounded" (click)="ViewValue(Card)" [routerLink]="['/ViewCard']"></p-button> {{ Card.name }}</td>
+      <td>{{ Card.mana_cost}}</td>
+      <td>{{ Card.cmc }}</td>
+      <td><tr *ngFor="let color of Card.colors"><td>{{color}}</td></tr></td>
+      <td><img *ngIf="RestAPI.checkAvaileble(Card.name)"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/600px-Ski_trail_rating_symbol-green_circle.svg.png" alt="" class="ava" >
+        <img *ngIf="!RestAPI.checkAvaileble(Card.name)"  src="https://www.emoji.co.uk/files/emoji-one/symbols-emoji-one/2224-large-red-circle.png" alt="" class="ava" ></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+

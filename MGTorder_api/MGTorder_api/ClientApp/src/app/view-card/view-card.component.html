@@ -1,0 +1,52 @@
+<div class="main">
+  
+  <div class="info">
+      <img [src]="RestAPI.thisCard.image_uris.normal" alt="">
+      <p-panel header="Info" class="infoText">
+          
+          <p-accordion [multiple]="true" styleClass="ui-accordion" >
+              <p-accordionTab header="Name">
+                 <strong> {{RestAPI.thisCard.name}}</strong>
+              </p-accordionTab>
+              <p-accordionTab header="Legalities" >
+                  <p>Standaard: {{RestAPI.thisCard.legalities.standard}}</p>
+                  <p>Future: {{RestAPI.thisCard.legalities.future}}</p>
+                  <p>Frontier: {{RestAPI.thisCard.legalities.frontier}}</p>
+                  <p>Modern: {{RestAPI.thisCard.legalities.modern}}</p>
+                  <p>Legacy: {{RestAPI.thisCard.legalities.legacy}}</p>
+                  <p>Pauper: {{RestAPI.thisCard.legalities.pauper}}</p>
+                  <p>Vintage: {{RestAPI.thisCard.legalities.vintage}}</p>
+                  <p>Penny: {{RestAPI.thisCard.legalities.penny}}</p>
+                  <p>Commander: {{RestAPI.thisCard.legalities.commander}}</p>
+                  <p>Duel: {{RestAPI.thisCard.legalities.duel}}</p>
+                  <p>Oldschool: {{RestAPI.thisCard.legalities.oldschool}}</p>
+              </p-accordionTab>
+              <p-accordionTab header="Text">
+                  {{RestAPI.thisCard.oracle_text}} 
+              </p-accordionTab>
+              <p-accordionTab header="Release">
+                  {{RestAPI.thisCard.released_at}} 
+              </p-accordionTab>
+              <p-accordionTab header="Set">
+                  {{RestAPI.thisCard.set_name}} 
+              </p-accordionTab>
+              <p-accordionTab header="Availability ">
+                  <p *ngIf="!RestAPI.checkAvaileble(RestAPI.thisCard.name)">Not Available</p>
+                  <p *ngIf="RestAPI.checkAvaileble(RestAPI.thisCard.name)">Available <p-button *ngIf="RestAPI.Login" label="order" styleClass="ui-button-info ui-button-raised ui-button-rounded" (click)="RestAPI.AddToOrder(RestAPI.thisCard.name)" [routerLink]="['/orders']"></p-button><p-button *ngIf="!RestAPI.Login" label="login first" styleClass="ui-button-warning ui-button-raised ui-button-rounded" [routerLink]="['/profile']"></p-button>
+                
+                </p> 
+              </p-accordionTab>
+          </p-accordion>
+          
+          
+        
+              
+          
+          
+     
+      </p-panel>
+  
+  
+  </div>
+
+</div>
