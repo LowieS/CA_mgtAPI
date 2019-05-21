@@ -15,6 +15,8 @@ export class ApiService {
   public ProfileName:string
   public CardOrderList:MyCardObject[]=[];
   public Login: boolean
+  
+  public temp:OrderObject=<any>[]
  
   public Advanced:boolean = false
   constructor(private Http:HttpClient) { 
@@ -23,6 +25,7 @@ export class ApiService {
     this.MyCardList=null
     this.ProfileName="Profile"
     this.ThisCustomer=null
+    
     
     
     this.Login=false
@@ -44,6 +47,7 @@ export class ApiService {
       if(card.name==Name){
         this.CardOrderList.push(card)
         console.log(card.name)
+        console.log(card.id)
       }
   }
   }
@@ -68,6 +72,36 @@ export class ApiService {
     this.Http.get<CustomerObject>(URL).subscribe(result => {
       this.ThisCustomer = result;
     }, error => console.error(error));
+  }
+
+  
+  PostOrder(URL:string){
+    console.log(URL)
+    let PostOrder: OrderObject = {
+      
+        myCards: this.CardOrderList,
+        thisCustomer: this.ThisCustomer,
+        id:2
+       
+      
+    };
+    
+    
+    console.log(PostOrder)
+    
+    const req = 
+    this.Http.post<OrderObject>(URL, PostOrder)
+    .subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
+      }
+    );
+    
+      
+      
   }
 
 }
@@ -259,4 +293,10 @@ export interface CustomerObject {
   id: number;
   username: string;
   myorders?: any;
+}
+
+export interface OrderObject {
+  id: number;
+  thisCustomer: CustomerObject;
+  myCards: MyCardObject[];
 }

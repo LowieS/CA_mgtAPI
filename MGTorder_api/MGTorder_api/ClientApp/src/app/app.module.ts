@@ -20,6 +20,8 @@ import {AccordionModule} from 'primeng/accordion';
 import {CheckboxModule} from 'primeng/checkbox';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
+import { AuthServiceService } from './auth-service.service';
+import { CallbackComponent } from './callback/callback.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { OrdersComponent } from './orders/orders.component';
     SearchCardComponent,
     ViewCardComponent,
     ProfileComponent,
-    OrdersComponent
+    OrdersComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,7 +47,8 @@ import { OrdersComponent } from './orders/orders.component';
       { path: 'fetch-data', component: SearchCardComponent },
       { path: 'ViewCard', component: ViewCardComponent },
       { path: 'profile', component:ProfileComponent },
-      { path: 'orders', component:OrdersComponent }
+      { path: 'orders', component:OrdersComponent },
+      { path: 'callback', component: CallbackComponent },
     ]),
     ButtonModule,
     PanelModule,
@@ -53,7 +57,8 @@ import { OrdersComponent } from './orders/orders.component';
     
   ],
   providers: [
-    ApiService
+    ApiService,
+    AuthServiceService
   ],
   bootstrap: [AppComponent]
 })

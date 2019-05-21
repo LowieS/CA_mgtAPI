@@ -11,6 +11,7 @@ namespace MGTorder_api.model
         static Customer Lowie;
         static Card TestCard;
         static Card TestCard2;
+        static Order TestOrder;
         public static void Initialize(LibraryContext context)
         {
             //Create the db if not yet exists
@@ -20,13 +21,15 @@ namespace MGTorder_api.model
             
             if (!context.customers.Any())
             {
+                List<Card> testlist = new List<Card>();
+                
                 Willem = new Customer()
                 {
                     //ID = 69,
                     Username = "Humassa",
                     Password="Admin",
                     
-                    Myorders=null
+                    
 
                 };
                 Lowie= new Customer()
@@ -35,9 +38,10 @@ namespace MGTorder_api.model
                     Username = "Lowiegie",
                     Password = "Beest",
 
-                    Myorders = null
+                    
 
                 };
+               
 
 
                 TestCard = new Card()
@@ -54,6 +58,15 @@ namespace MGTorder_api.model
                     Amount=2
 
                 };
+                testlist.Add(TestCard);
+                testlist.Add(TestCard2);
+                TestOrder = new Order()
+                {
+                    thisCustomer = Lowie,
+                    myCards = testlist
+                    
+                };
+                context.orders.Add(TestOrder);
                 context.customers.Add(Willem);
                 context.customers.Add(Lowie);
 

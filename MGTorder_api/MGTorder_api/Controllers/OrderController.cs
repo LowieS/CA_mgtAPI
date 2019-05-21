@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MGTorder_api.model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MGTorder_api.Controllers
 {
@@ -11,5 +13,37 @@ namespace MGTorder_api.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
+        public LibraryContext _context { get; set; }
+
+        public OrderController(LibraryContext ctxt)
+        {
+            _context = ctxt;
+        }
+        [Route("{id}")]
+        [HttpGet]
+        public ActionResult<Order> GetOrder(int id)
+        {
+            var theOrder= _context.orders.Include(b => b.myCards)
+                                        .SingleOrDefault(b => b.ID == id);
+            theOrder = _context.orders.Include(b => b.thisCustomer)
+                                        .SingleOrDefault(b => b.ID == id);
+            return theOrder;
+        }
+
+        
+        [HttpPost]
+        public ActionResult<Order> PostOrder([FromBody]Order order)
+        {
+            Order theorder = new Order();
+            theorder.thisCustomer= _context.customers.SingleOrDefault(b => b.ID == order.thisCustomer.ID);
+            theorder.myCards = new List<Card>();
+            foreach (Card item in order.myCards)
+            {
+                theorder.myCards.Add(_context.cards.SingleOrDefault(b => b.ID == item.ID));
+            }
+            _context.orders.Add(theorder);
+            _context.SaveChanges();
+            return Created("", order);
+        }
     }
 }

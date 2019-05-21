@@ -1,4 +1,5 @@
 using MGTorder_api.model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,12 @@ namespace MGTorder_api
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.Authority = "https://dev-1507l9kp.eu.auth0.com";//https://accounts.google.com
+                options.Audience = "OZy4RuD1JcFxbSejV7xxaEl1XS1Wis56";
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -71,6 +78,7 @@ namespace MGTorder_api
                 }
             });
             DBInitializer.Initialize(context);
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

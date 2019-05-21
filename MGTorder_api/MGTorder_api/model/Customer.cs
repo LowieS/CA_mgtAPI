@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace MGTorder_api.model
 
         public string Password { private get; set; }
 
+        [JsonIgnore]
         public ICollection<Order> Myorders { get; set; }
+
+
     }
 }
