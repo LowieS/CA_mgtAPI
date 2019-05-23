@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { AuthServiceService } from '../auth-service.service';
 
 @Component({
   selector: 'app-orders',
@@ -8,7 +9,7 @@ import { ApiService } from '../api.service';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor(private RestAPI:ApiService) { }
+  constructor(private RestAPI:ApiService,public auth:AuthServiceService) { }
 
   ngOnInit() {
   }

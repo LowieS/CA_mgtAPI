@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthServiceService } from './auth-service.service';
 
 @Injectable()
 export class ApiService {
@@ -14,12 +15,14 @@ export class ApiService {
   Availeble:boolean
   public ProfileName:string
   public CardOrderList:MyCardObject[]=[];
+  public MyOrders:OrderObject[]=[]
   public Login: boolean
+  profile: any;
   
   public temp:OrderObject=<any>[]
  
   public Advanced:boolean = false
-  constructor(private Http:HttpClient) { 
+  constructor(private Http:HttpClient,public auth:AuthServiceService) { 
     this.CardList=null
     this.SetList=null
     this.MyCardList=null
@@ -74,6 +77,15 @@ export class ApiService {
     }, error => console.error(error));
   }
 
+  GetOrders(URL:string){
+    console.log(this.profile._accessToken)
+    this.Http.get<OrderObject[]>(URL,{
+      headers: new HttpHeaders().set('Authorization', `Bearer ${this.auth.idToken}`)
+    }).subscribe(result => {
+      this.MyOrders = result;
+    }, error => console.error(error));
+  }
+
   
   PostOrder(URL:string){
     console.log(URL)
@@ -85,8 +97,6 @@ export class ApiService {
        
       
     };
-    
-    
     console.log(PostOrder)
     
     const req = 
@@ -100,8 +110,30 @@ export class ApiService {
       }
     );
     
+  }
+
+
+  PostCustomer(URL:string,name:string){
+   
+    let Customer: CustomerObject = {
       
+       username: name
+       
       
+    };
+    
+    
+    const req = 
+    this.Http.post<CustomerObject>(URL, Customer)
+    .subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
+      }
+    );
+    
   }
 
 }
@@ -290,13 +322,13 @@ export interface MyCardObject {
   amount: number;
 }
 export interface CustomerObject {
-  id: number;
+  id?: number;
   username: string;
   myorders?: any;
 }
 
 export interface OrderObject {
-  id: number;
+  id?: number;
   thisCustomer: CustomerObject;
   myCards: MyCardObject[];
 }

@@ -32,7 +32,7 @@
               </p-accordionTab>
               <p-accordionTab header="Availability ">
                   <p *ngIf="!RestAPI.checkAvaileble(RestAPI.thisCard.name)">Not Available</p>
-                  <p *ngIf="RestAPI.checkAvaileble(RestAPI.thisCard.name)">Available <p-button *ngIf="RestAPI.Login" label="order" styleClass="ui-button-info ui-button-raised ui-button-rounded" (click)="RestAPI.AddToOrder(RestAPI.thisCard.name)" [routerLink]="['/orders']"></p-button><p-button *ngIf="!RestAPI.Login" label="login first" styleClass="ui-button-warning ui-button-raised ui-button-rounded" [routerLink]="['/profile']"></p-button>
+                  <p *ngIf="RestAPI.checkAvaileble(RestAPI.thisCard.name)">Available <p-button *ngIf="auth.isAuthenticated()" label="order" styleClass="ui-button-info ui-button-raised ui-button-rounded" (click)="RestAPI.AddToOrder(RestAPI.thisCard.name)" [routerLink]="['/orders']"></p-button><p-button *ngIf="!auth.isAuthenticated()" label="login first" styleClass="ui-button-warning ui-button-raised ui-button-rounded" [routerLink]="['/profile']"></p-button>
                 
                 </p> 
               </p-accordionTab>

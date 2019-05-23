@@ -11,6 +11,9 @@ namespace MGTorder_api.model
         static Customer Lowie;
         static Card TestCard;
         static Card TestCard2;
+        static Card TestCard3;
+        static Card TestCard4;
+        static Card TestCard5;
         static Order TestOrder;
         public static void Initialize(LibraryContext context)
         {
@@ -58,8 +61,33 @@ namespace MGTorder_api.model
                     Amount=2
 
                 };
+                TestCard3 = new Card()
+                {
+                    Name = "Carnifex Demon",
+                    Set = "SOM",
+                    Amount = 2
+
+                };
+                TestCard4 = new Card()
+                {
+                    Name = "Dragonlord Kolaghan",
+                    Set = "DTK",
+                    Amount = 2
+
+                };
+                TestCard5 = new Card()
+                {
+                            
+                    Name = "Mogis, God of Slaughter",
+                    Set = "BNG",
+                    Amount = 2
+
+                };
                 testlist.Add(TestCard);
                 testlist.Add(TestCard2);
+                testlist.Add(TestCard3);
+                testlist.Add(TestCard4);
+                testlist.Add(TestCard5);
                 TestOrder = new Order()
                 {
                     thisCustomer = Lowie,

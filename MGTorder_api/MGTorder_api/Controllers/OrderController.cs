@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MGTorder_api.model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace MGTorder_api.Controllers
         {
             _context = ctxt;
         }
+        /*
         [Route("{id}")]
         [HttpGet]
         public ActionResult<Order> GetOrder(int id)
@@ -29,8 +31,22 @@ namespace MGTorder_api.Controllers
                                         .SingleOrDefault(b => b.ID == id);
             return theOrder;
         }
-
+        */
         
+        [Route("{name}")]
+        [Authorize]
+        [HttpGet]
+        public IList<Order> GetOrderbyname(string name)
+        {
+
+            IQueryable<Order> theOrder;
+            theOrder=_context.orders.Include(b => b.thisCustomer).Include(b => b.myCards)
+                                        .Where(b => b.thisCustomer.Username == name);
+           
+            return theOrder.ToList();
+        }
+        
+
         [HttpPost]
         public ActionResult<Order> PostOrder([FromBody]Order order)
         {

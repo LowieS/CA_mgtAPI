@@ -1,6 +1,8 @@
 <div class="title"><img src="https://fizen.files.wordpress.com/2014/05/mtglogo.jpg" alt=""></div>
 
 <body>
+  <div *ngIf="auth.isAuthenticated()">
+    <h2>Place order</h2>
   <table class='table'>
     <thead>
       <tr>
@@ -19,5 +21,29 @@
     </tbody>
   </table>
   <p-button label="Place order" styleClass="ui-button-warning " (click)="RestAPI.PostOrder('https://localhost:44329/api/orders')"  ></p-button>
+
+  <h2>Your orders</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+       
+        <th>Id</th>
+        <th>Cards</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Order of RestAPI.MyOrders">
+        <td>  {{ Order.id }}</td>
+        <td><tr *ngFor="let card of Order.myCards">
+            <td>{{card.name}}</td>
+        </td>
+        
+        
+      </tr>
+    </tbody>
+  </table>
+  <p-button label="Get my orders" styleClass="ui-button-warning " (click)="RestAPI.GetOrders('https://localhost:44329/api/orders/'+RestAPI.profile?.nickname)"  ></p-button>
+</div>
   
 </body>

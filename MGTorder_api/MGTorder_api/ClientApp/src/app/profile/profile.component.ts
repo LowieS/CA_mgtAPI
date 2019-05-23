@@ -9,31 +9,50 @@ import { AuthServiceService } from '../auth-service.service';
 })
 export class ProfileComponent implements OnInit {
   Username:string
-  profile: any;
+  
+  firstcheck:boolean
 
   constructor(private RestAPI:ApiService,public auth:AuthServiceService) { 
     this.Username=""
     auth.handleAuthentication();
+    this.firstcheck=true
 
   }
 
   ngOnInit() {
     if (this.auth.isAuthenticated()) {
-      this.auth.renewTokens();
+      //this.auth.renewTokens();
     }
-    if (this.auth.userProfile) {
-      this.profile = this.auth.userProfile;
-    } else {
-      this.auth.getProfile((err, profile) => {
-        this.profile = profile;
-      });
-    }
+   
+    
+  }
+  getinfo():boolean{
+    if(this.firstcheck){
+      if (this.auth.userProfile) {
+        this.RestAPI.profile = this.auth.userProfile;
+      } else {
+        this.auth.getProfile((err, profile) => {
+          this.RestAPI.profile = profile;
+        console.log(this.RestAPI.profile)  
+        });
+      }
+      this.checkNewUser()
+      this.firstcheck=false
+  }
+    return true
   }
 
-  Login(){
-    this.RestAPI.GetCustomer("https://localhost:44329/api/Customer/"+this.Username)
-    this.RestAPI.ProfileName=this.RestAPI.ThisCustomer.username
-    this.RestAPI.Login=true
+  
+
+  checkNewUser(){
+    
+      console.log("post")
+      
+        this.RestAPI.PostCustomer("https://localhost:44329/api/Customer",this.RestAPI.profile.nickname)
+        this.RestAPI.GetCustomer("https://localhost:44329/api/Customer/"+this.RestAPI.profile.nickname)
+        
+      
+    
   }
 
 }

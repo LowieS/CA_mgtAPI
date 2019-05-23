@@ -32,5 +32,24 @@ namespace MGTorder_api.Controllers
             return thisCustomer;
         }
 
+        [HttpPost]
+        public ActionResult<Customer> PostOrder([FromBody]Customer customer)
+        {
+            
+           Customer thisCustomer = _context.customers.FirstOrDefault(b => b.Username == customer.Username);
+            if (thisCustomer == null)
+            {
+                _context.customers.Add(customer);
+                _context.SaveChanges();
+                return Created("", customer);
+            }
+            else
+            {
+                return thisCustomer;
+            }
+
+            
+        }
+
     }
 }

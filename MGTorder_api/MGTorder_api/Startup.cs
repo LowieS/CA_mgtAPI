@@ -47,6 +47,7 @@ namespace MGTorder_api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, LibraryContext context)
         {
+            app.UseAuthentication();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -78,8 +79,9 @@ namespace MGTorder_api
                 }
             });
             DBInitializer.Initialize(context);
-            app.UseAuthentication();
+            
             app.UseMvc();
+            
         }
     }
 }

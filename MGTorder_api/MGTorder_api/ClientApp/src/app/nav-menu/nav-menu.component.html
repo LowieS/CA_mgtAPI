@@ -30,7 +30,7 @@
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
                         <a [routerLink]='["/profile"]' (click)='collapse()'>
-                            <span class='glyphicon glyphicon-user'></span> {{RestAPI.ProfileName}}
+                            <span class='glyphicon glyphicon-user'></span> {{RestAPI.profile?.nickname}}
                         </a>
                 </li>
             </ul>

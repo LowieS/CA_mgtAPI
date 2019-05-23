@@ -43,17 +43,19 @@
   <router-outlet></router-outlet>
 </main>
 
-<div class="panel panel-default profile-area">
+<div class="panel panel-default profile-area" *ngIf="auth.isAuthenticated()">
+  <div *ngIf="getinfo()">
   <div class="panel-heading">
     <h3>Profile</h3>
   </div>
   <div class="panel-body">
-    <img src="{{profile?.picture}}" class="avatar" alt="avatar">
+    <img src="{{RestAPI.profile?.picture}}" class="avatar" alt="avatar">
     <div>
       <label><i class="glyphicon glyphicon-user"></i> Nickname</label>
-      <h3 class="nickname">{{ profile?.nickname }}</h3>
+      <h3 class="nickname">{{ RestAPI.profile?.nickname }}</h3>
     </div>
-    <pre class="full-profile">{{ profile | json }}</pre>
+    <pre class="full-profile">{{ RestAPI.profile | json }}</pre>
   </div>
+</div>
 </div>
 </body>

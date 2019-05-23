@@ -43,6 +43,7 @@ import { CallbackComponent } from './callback/callback.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: SearchCardComponent },
       { path: 'ViewCard', component: ViewCardComponent },
