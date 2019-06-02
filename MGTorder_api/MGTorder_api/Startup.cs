@@ -23,12 +23,19 @@ namespace MGTorder_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<LibraryContext>(
+         /*   services.AddDbContext<LibraryContext>(
               options => options.UseSqlServer(
                   Configuration.GetConnectionString("DefaultConnection")
               )
           );
-            
+            */
+
+            services.AddDbContext<LibraryContext>(
+            options => options.UseMySQL(
+                Configuration.GetConnectionString("DefaultConnection")
+            )
+        );
+
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
