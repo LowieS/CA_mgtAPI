@@ -22,15 +22,15 @@ namespace MGTorder_api.model
 
 
             
-            if (!context.customers.Any())
-            {
+           // if (!context.customers.Any())
+           // {
                 List<Card> testlist = new List<Card>();
                 
                 Willem = new Customer()
                 {
                     //ID = 69,
                     Username = "Humassa",
-                    Password="Admin",
+                    
                     
                     
 
@@ -39,7 +39,7 @@ namespace MGTorder_api.model
                 {
                     //ID = 69,
                     Username = "Lowiegie",
-                    Password = "Beest",
+                    
 
                     
 
@@ -85,9 +85,7 @@ namespace MGTorder_api.model
                 };
                 testlist.Add(TestCard);
                 testlist.Add(TestCard2);
-                testlist.Add(TestCard3);
-                testlist.Add(TestCard4);
-                testlist.Add(TestCard5);
+                
                 TestOrder = new Order()
                 {
                     thisCustomer = Lowie,
@@ -100,8 +98,11 @@ namespace MGTorder_api.model
 
                 context.cards.Add(TestCard);
                 context.cards.Add(TestCard2);
+                context.cards.Add(TestCard3);
+                context.cards.Add(TestCard4);
+                context.cards.Add(TestCard5);
                 context.SaveChanges();
-            }
+            //}
         }
     }
 }

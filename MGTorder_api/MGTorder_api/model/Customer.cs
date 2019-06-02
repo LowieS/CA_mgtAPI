@@ -11,7 +11,7 @@ namespace MGTorder_api.model
         public int ID { get; set; }
         public string Username { get; set; }
 
-        public string Password { private get; set; }
+        
 
         [JsonIgnore]
         public ICollection<Order> Myorders { get; set; }
