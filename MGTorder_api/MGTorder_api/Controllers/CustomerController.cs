@@ -51,30 +51,5 @@ namespace MGTorder_api.Controllers
             
         }
 
-        [Route("{naam}")]
-        [HttpPut]
-        public List<Customer> UpdateDuts([FromBody] Customer nieuwe)
-        {
-
-            _context.customers.Update(nieuwe);
-
-
-
-
-            _context.SaveChanges();
-            return _context.customers.ToList();
-        }
-
-        [Route("{id}")]
-        [HttpDelete]
-        public List<Customer> DelCus(int id)
-        {
-
-            Customer customer = _context.customers.ToList().First(list2 => list2.ID == id);
-            _context.customers.Remove(customer);
-            _context.SaveChanges();
-            return _context.customers.ToList();
-        }
-
     }
 }
